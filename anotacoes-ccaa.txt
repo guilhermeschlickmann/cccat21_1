@@ -1,0 +1,2 @@
+Liberação da execução de comandos docker no PowerShell
+Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
