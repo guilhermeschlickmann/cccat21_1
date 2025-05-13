@@ -15,6 +15,7 @@ function clean (cpf: string) {
 }
 
 function allDigitsEqual (cpf: string) {
+	if (!cpf) return false;
 	const [firstDigit] = cpf;
 	return [...cpf].every(digit => digit === firstDigit);
 }

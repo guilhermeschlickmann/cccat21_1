@@ -1,4 +1,5 @@
 export function isValidPassword (password: string) {
+    if (!password) return false;
     if (password.length < 8) return false;
     if (!password.match(/\d+/)) return false;
     if (!password.match(/[a-z]+/)) return false;

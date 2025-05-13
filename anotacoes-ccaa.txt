@@ -1,2 +1,100 @@
 Liberação da execução de comandos docker no PowerShell
 Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
+yarn run docker:start
+
+npx ts-node src/main.ts
+
+npx jest test/integration/main.test.ts --silent=false
+
+
+
+email
+
+utilitários ticket/bpm
+método utilitario
+
+no finalizar 
+
+
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+async function chamarEndpointComRetry(url, payload, maxTentativas = 3) {
+    for (let tentativa = 1; tentativa <= maxTentativas; tentativa++) {
+        try {
+            await _http.post(url, payload);
+            return; // sucesso
+        } catch (e) {
+            _log.warn(`Tentativa ${tentativa} falhou`);
+            if (tentativa < maxTentativas) {
+                await sleep(600000); // espera 10 minutos
+            } else {
+                throw e; // esgotou tentativas
+            }
+        }
+    }
+}
+
+
+- criar a requisição a partir de um novo método na classe do murilo (método utilitário)
+- em caso de falha, criar um schedule sem o elemento de mensagem através da classe atividade de integração
+- verificar se o elemento de mensagem é um campo obrigatório da classe de atividade de integração (não é obrigatório)
+
+
+sIAFRequestCode
+sIAFStatusCode
+lastObservationMessage
+processInstanceObject
+
+
+
+_pin.lastObservationMessage = getMessage();
+
+
+if (!_object.ignoreSIAFChange) {
+
+    br.com.animaeducacao.utils.UtilityMethods.addSolicitacaoFinalObservation({
+        'name': "Atividades Complementares - Inclusão da observação - Ticket " + _object.ticket.code,
+        'sIAFRequestCode': _object.sIAFRequestCode,
+        'sIAFStatusCode': getStatusSIAFCode(_object.ticketStatus._id),
+        'processInstanceObject': _object,
+        'lastObservationMessage': _object.lastObservationMessage
+    });
+
+    if (_object && _object._endDate) {
+        const conclusionDate = new Date();
+        _utils.getMethod('_classId', _object.inputForm.solicitationDetails._classId, '_patch')({
+            "_id": _object.inputForm.solicitationDetails._id,
+            "_operationsList": [{
+                "op": 'replace',
+                "path": '/globalSLA/endDate',
+                "value": conclusionDate
+            },
+            ]
+        });
+    }
+
+}
+
+function getStatusSIAFCode(id) {
+
+    return {
+        //ONE                       SIAF        //ONE                           SIAF
+        "65a6d723fadcba2a9b745841": 356,        //Reanálise                     =
+        "65a6d7200a19173f1a135abe": 5,          //Aprovado                      deferido
+        "65a6d71c0a19173f1a12b498": 6,          //Reprovado                     indeferido
+        "65a6d7290a19173f1a14912f": 357,        //Em atendimento                =
+        "65a6d726c246b07eb643d5cd": 355         //Aguardando resposta           =       
+    }[id];
+}
+
+
+
+
+User Id=XINTEGRACAOBPM;Password=tIxu5Z3u1E35mkeq;Data Source=(DESCRIPTION=(ADDRESS_LIST=(ADDRESS=(PROTOCOL=TCP)(HOST=nprdexacsdr-nys9v-scan.sbnnhmlexavcp.vcnnprdvcp.oraclevcn.com)(PORT=1521)))(CONNECT_DATA=(SERVICE_NAME=hmg01.sbnnhmlexavcp.vcnnprdvcp.oraclevcn.com)));
+
+
+
+
+
